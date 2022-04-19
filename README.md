@@ -6,6 +6,25 @@ There are some limitations to the video tutorials due to older API's that were f
 
 -- GBJ
 
+# OpenWeather.org Info: gyrivajop@getnada.com
+#####################################################
+API key:
+- Your API key is 160144a9bdc82bd3c476d76c63eda415 (you'll need your own, use https://getnada.com/ to get signed up, verified and have an email to login with etc.) 
+- Within the next couple of hours, it will be activated and ready to use
+- You can later create more API keys on your account page
+- Please, always use your API key in each API call
+
+Endpoint:
+- Please, use the endpoint api.openweathermap.org for your API calls
+- Example of API call:
+api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=160144a9bdc82bd3c476d76c63eda415
+
+Useful links:
+- API documentation https://openweathermap.org/api
+- Details of your plan https://openweathermap.org/price
+- Please, note that 16-days daily forecast and History API are not available for Free subscribers
+#####################################################
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App] (https://github.com/facebook/create-react-app).
