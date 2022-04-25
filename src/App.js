@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import WeatherCard from './components/WeatherCard/component';
@@ -10,22 +10,67 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
-    const data = async () => {
+    // A default state
+    const [query, setQuery] = useState("Tampa, US"); 
+    // The weather pbject
+    const [weather, setWeather] = useState({
+        temp: null,
+        city: null,
+        country: null,
+        condition: null
+    });
+
+    // Make the API call to get the weather object
+    const data = async q => {
         const apiRes = await fetch(
-            "http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=160144a9bdc82bd3c476d76c63eda415"
+            `http://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=160144a9bdc82bd3c476d76c63eda415`
         );
         const resJSON = await apiRes.json();
         return resJSON;
     }
-    data().then(res => { 
-        console.log(res.main.temp);
-    });
+
+    // Handle when user clicks "Search" button
+    const handleSearch = (e) => { 
+        e.preventDefault();
+        data(query).then(res => {
+            console.log(res);
+            setWeather({
+                temp: res.main.temp,
+                city: res.name,
+                condition: res.weather[0].main,
+                country: res.country
+            });
+        });
+    };
+
+    // sets the initial state of the weather block
+    useEffect(() => {
+        data(query).then(res => {
+            console.log(res);
+            setWeather({
+                temp: res.main.temp,
+                city: res.name,
+                condition: res.weather[0].main,
+                country: res.country
+            });
+        });
+    }, []);
 
     return (
         <AppWrapper>
-            <WeatherCard temp={-13} condition="Clear" city="Austin" country="US" />
-            <WeatherCard temp={11} condition="Rainy" city="Sydney" country="AU" />
-            <WeatherCard temp={23} condition="Thunderstorm" city="London" country="UK" />
+            <WeatherCard
+                temp={weather.temp}
+                condition={weather.condition}
+                city={weather.city}
+                country={weather.country}
+            />
+            <form>
+                <input
+                    value={ query }
+                    onChange={ e => setQuery(e.target.value) }
+                />
+                <button onClick={ e => handleSearch(e) }>Search</button>
+            </form>
         </AppWrapper>
     );
 }
