@@ -15,8 +15,10 @@ const Icon = ({ condition }) => {
             break;
         case 'Clouds':
             icon = './img/cloudy.png';
+            break;
         case 'Cloudy':
             icon = './img/cloudy.png';
+            break;
         case 'Haze':
             icon = './img/cloudy.png';
             break;
@@ -24,6 +26,12 @@ const Icon = ({ condition }) => {
             icon = './img/other_cloudy.png';
             break;
         case 'Rain':
+            icon = './img/rainy.png';
+            break;
+        case 'Drizzle':
+            icon = './img/rainy.png';
+            break;
+        case 'Mist':
             icon = './img/rainy.png';
             break;
         case 'Sunny':

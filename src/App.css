@@ -1,1 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
+#root .App {
+    margin: 0 auto;
+    text-align: center;
+    width: 85%;
+}
+#root .App div {
+    text-align: center;
+}
