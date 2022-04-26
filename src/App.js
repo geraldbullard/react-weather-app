@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import WeatherCard from './components/WeatherCard/component';
 import './App.css';
 
+import { cToF } from './components/WeatherCard/utils';
+
 const AppWrapper = styled.div`
     margin: 10px auto;
     color: white;
@@ -54,12 +56,13 @@ function App() {
                 country: res.country
             });
         });
+        // eslint-disable-next-line
     }, []);
 
     return (
         <AppWrapper>
             <WeatherCard
-                temp={weather.temp}
+                temp={cToF(weather.temp).toFixed(0)}
                 condition={weather.condition}
                 city={weather.city}
                 country={weather.country}
