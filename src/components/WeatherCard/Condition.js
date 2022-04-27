@@ -22,11 +22,6 @@ const Condition = ({ temp, condition }) => {
             height: "1em",
         },
     };
-    const Temp = styled.h1`        
-        font-family: sans-serif;
-        font-size: 2.0rem;
-        font-weight: 200;
-    `;
 
     const State = styled.h3`
         font-family: sans-serif;
