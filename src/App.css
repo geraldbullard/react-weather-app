@@ -8,3 +8,7 @@
 #root .App div {
     text-align: center;
 }
+#root .errorWrapper, 
+#root .loadingWrapper {
+    color: black;
+}

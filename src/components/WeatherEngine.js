@@ -12,7 +12,9 @@ const AppWrapper = styled.div`
 const WeatherEngine = ({ location }) => {
     // A default state
     const [query, setQuery] = useState(""); 
-    // The weather pbject
+    const [error, setError] = useState(false); 
+    const [loading, setLoading] = useState(false); 
+    // The weather object
     const [weather, setWeather] = useState({
         temp: null,
         city: null,
@@ -22,16 +24,23 @@ const WeatherEngine = ({ location }) => {
 
     // Make the API call to get the weather object
     const getWeather = async q => {
-        const apiRes = await fetch(
-            `http://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=160144a9bdc82bd3c476d76c63eda415`
-        );
-        const resJSON = await apiRes.json();
-        setWeather({
-            temp: resJSON.main.temp,
-            city: resJSON.name,
-            condition: resJSON.weather[0].main,
-            country: resJSON.country
-        });
+        setQuery("");
+        setLoading(true);
+        try {
+            const apiRes = await fetch(
+                `http://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=160144a9bdc82bd3c476d76c63eda415`
+            );
+            const resJSON = await apiRes.json();
+            setWeather({
+                temp: resJSON.main.temp,
+                city: resJSON.name,
+                condition: resJSON.weather[0].main,
+                country: resJSON.country
+            });
+        } catch (error) {
+            setError(true);
+        }
+        setLoading(false);
     }
 
     // Handle when user clicks "Search" button
@@ -48,21 +57,40 @@ const WeatherEngine = ({ location }) => {
 
     return (
         <AppWrapper>
-            <WeatherCard
-                temp={cToF(weather.temp).toFixed(0)}
-                condition={weather.condition}
-                city={weather.city}
-                country={weather.country}
-            />
-            <div className="formWrapper">
-                <form>
-                    <input
-                        value={ query }
-                        onChange={ e => setQuery(e.target.value) }
-                    />
-                    <button onClick={ e => handleSearch(e) }>Search</button>
-                </form>
-            </div>
+            {!loading && !error ? ( // Done loading and no errors
+            <>
+                <WeatherCard
+                    temp={cToF(weather.temp).toFixed(0)}
+                    condition={weather.condition}
+                    city={weather.city}
+                    country={weather.country}
+                />
+                <div className="formWrapper">
+                    <form>
+                        <input
+                            
+                            value={query}
+                            onChange={e => setQuery(e.target.value)}
+                        />
+                            <button onClick={e => handleSearch(e)}>Search</button>
+                    </form>
+                </div>
+            </>
+            ) : loading && !error ? ( // Loading with no errors
+            <>
+                <div className="loadingWrapper">
+                    Loading...
+                </div>
+            </>
+            ) : !loading && error ? ( // Done loading and has error
+            <>
+                <div className="errorWrapper">
+                    ERROR!
+                </div>
+            </>
+            ) : ( // show nothing
+                null
+            )}
         </AppWrapper>
     );
 }
