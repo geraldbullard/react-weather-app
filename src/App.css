@@ -12,3 +12,12 @@
 #root .loadingWrapper {
     color: black;
 }
+#root .city-input-controls {
+    margin-top: 8px;
+}
+#root .city-input {
+    padding: 2px 4px;
+}
+#root .city-input-controls button {
+    padding: 2px 4px;
+}

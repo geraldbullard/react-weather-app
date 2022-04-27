@@ -10,10 +10,12 @@ const AppWrapper = styled.div`
 `;
 
 const WeatherEngine = ({ location }) => {
-    // A default state
+    // Default states
+    // eslint-disable-next-line
     const [query, setQuery] = useState(""); 
     const [error, setError] = useState(false); 
     const [loading, setLoading] = useState(false); 
+    
     // The weather object
     const [weather, setWeather] = useState({
         temp: null,
@@ -43,12 +45,6 @@ const WeatherEngine = ({ location }) => {
         setLoading(false);
     }
 
-    // Handle when user clicks "Search" button
-    const handleSearch = (e) => { 
-        e.preventDefault();
-        getWeather(query);
-    };
-
     // sets the initial state of the weather block
     useEffect(() => {
         getWeather(location);
@@ -64,17 +60,8 @@ const WeatherEngine = ({ location }) => {
                     condition={weather.condition}
                     city={weather.city}
                     country={weather.country}
-                />
-                <div className="formWrapper">
-                    <form>
-                        <input
-                            
-                            value={query}
-                            onChange={e => setQuery(e.target.value)}
-                        />
-                            <button onClick={e => handleSearch(e)}>Search</button>
-                    </form>
-                </div>
+                    getWeather={getWeather}
+                />                
             </>
             ) : loading && !error ? ( // Loading with no errors
             <>
@@ -85,7 +72,8 @@ const WeatherEngine = ({ location }) => {
             ) : !loading && error ? ( // Done loading and has error
             <>
                 <div className="errorWrapper">
-                    ERROR!
+                    ERROR!<br /><br />
+                    <button onClick={() => setError(false)}>Reset</button>
                 </div>
             </>
             ) : ( // show nothing
