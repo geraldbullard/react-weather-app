@@ -1,29 +1,39 @@
-# Creating a weather app using React (Training/Education) 
+# Creating a weather app using React (Training/Education)
 
 I started this project based on a React YouTube Tutorial Series [Learn React in 2020] (https://www.youtube.com/playlist?list=PLDIXF8nb0VG1v4S-smVy7GV0MHsJ3PJiL) to get a start at learning react for PRPL.
 
-There are some limitations to the video tutorials due to older API's that were free at the time of the series' creation and I have done what I can to replace the resources with other free alternatives. As you progress thru the series you should be able to reference notes here in this repo for the alternative solutions and updates to the code etc. 
+There are some limitations to the video tutorials due to older API's that were free at the time of the series' creation and I have done what I can to replace the resources with other free alternatives. As you progress thru the series you should be able to reference notes here in this repo for the alternative solutions and updates to the code etc.
+
+Also Installed:
+
+- Framer Motion: https://www.framer.com/docs/
+- React Spinners: https://github.com/davidhu2000/react-spinners
+- React Reel effect: https://github.com/eknowles/react-reel
 
 -- GBJ
 
 # OpenWeather.org Info: gyrivajop@getnada.com
+
 #####################################################
 API key:
-- Your API key is 160144a9bdc82bd3c476d76c63eda415 (you'll need your own, use https://getnada.com/ to get signed up, verified and have an email to login with etc.) 
+
+- Your API key is 160144a9bdc82bd3c476d76c63eda415 (you'll need your own, use https://getnada.com/ to get signed up, verified and have an email to login with etc.)
 - Within the next couple of hours, it will be activated and ready to use
 - You can later create more API keys on your account page
 - Please, always use your API key in each API call
 
 Endpoint:
+
 - Please, use the endpoint api.openweathermap.org for your API calls
 - Example of API call:
-api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=160144a9bdc82bd3c476d76c63eda415
+  api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=160144a9bdc82bd3c476d76c63eda415
 
 Useful links:
+
 - API documentation https://openweathermap.org/api
 - Details of your plan https://openweathermap.org/price
 - Please, note that 16-days daily forecast and History API are not available for Free subscribers
-#####################################################
+  #####################################################
 
 # Getting Started with Create React App
 

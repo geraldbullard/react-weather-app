@@ -21,3 +21,15 @@
 #root .city-input-controls button {
     padding: 2px 4px;
 }
+#root .loadingWrapper {
+    margin: 0 auto;
+    display: flex;
+    width: 200px;
+    height: 240px;
+    justify-content: center;
+    align-items: center;
+}
+#root .tempWrapper {
+    font-size: 2em;
+    font-weight: 300;
+}

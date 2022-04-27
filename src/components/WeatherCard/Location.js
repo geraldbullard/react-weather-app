@@ -16,7 +16,7 @@ const Location = ({ city, country, getWeather }) => {
                     getWeather(query);
                 }}>
                     <p className="city-input">
-                            <input
+                        <input
                             className="city-input"
                             required
                             placeholder="City Name"

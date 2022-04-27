@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { cToF } from './WeatherCard/utils';
 
 import WeatherCard from './WeatherCard/component';
+import { PulseLoader } from 'react-spinners';
 
 const AppWrapper = styled.div`
     margin: 10px auto;
@@ -12,9 +13,9 @@ const AppWrapper = styled.div`
 const WeatherEngine = ({ location }) => {
     // Default states
     // eslint-disable-next-line
-    const [query, setQuery] = useState(""); 
-    const [error, setError] = useState(false); 
-    const [loading, setLoading] = useState(false); 
+    const [query, setQuery] = useState("");
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     // The weather object
     const [weather, setWeather] = useState({
@@ -48,7 +49,6 @@ const WeatherEngine = ({ location }) => {
     // sets the initial state of the weather block
     useEffect(() => {
         getWeather(location);
-        // eslint-disable-next-line
     }, [location]);
 
     return (
@@ -61,12 +61,12 @@ const WeatherEngine = ({ location }) => {
                     city={weather.city}
                     country={weather.country}
                     getWeather={getWeather}
-                />                
+                />
             </>
             ) : loading && !error ? ( // Loading with no errors
             <>
                 <div className="loadingWrapper">
-                    Loading...
+                            <PulseLoader size={15} color="purple" />
                 </div>
             </>
             ) : !loading && error ? ( // Done loading and has error
