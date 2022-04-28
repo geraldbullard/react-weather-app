@@ -7,7 +7,13 @@ const Location = ({ city, getWeather }) => {
     const [inputCityMode, setInputCityMode] = useState(false);
     const inputCityRef = useRef("");
     // Another way to focus not in videos
-    //const [inputCityFocusState, setInputCityFocusState] = useState(false);
+    // const [inputCityFocusState, setInputCityFocusState] = useState(false);
+
+    // Handle the "Esc" key being pressed while the city input is visible to hide it
+    const handleEsc = (event) => {
+        if (event.keyCode === 27)
+            if (inputCityMode) setInputCityMode(false);
+    };
 
     useEffect(() => {
         if (inputCityMode) {
@@ -33,6 +39,7 @@ const Location = ({ city, getWeather }) => {
                                     /*autoFocus={inputCityFocusState}*/ // Another way to focus not in videos
                                     value={query}
                                     onChange={e => setQuery(e.target.value)}
+                                    onKeyDown={handleEsc}
                                 />
                             </p>
                             <p className="city-input-controls">
@@ -99,7 +106,6 @@ const CancelButton = styled.span`
     font-size: 0.8rem;
     box-shadow: 2px 1px 3px rgb(0,0,0, 0.4);
 `;
-
 const Container = styled.div`
     text-align: center;
     margin: 20px auto 0;
