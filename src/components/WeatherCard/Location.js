@@ -19,7 +19,7 @@ const Location = ({ city, getWeather }) => {
         return (
             <Container>
                 <div className="formWrapper">
-                    <motion.div initial={{opacity:0}} animate={{opacity:1}}></motion.div>
+                    <motion.div initial={{opacity:0}} animate={{opacity:1}}>
                         <FormElement onSubmit={e => {
                             e.preventDefault();
                             getWeather(query);

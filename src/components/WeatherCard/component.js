@@ -6,7 +6,7 @@ import Condition from "./Condition";
 import Icon from "./Icon";
 import { motion } from "framer-motion";
 
-const WeatherCard = ({ temp, condition, city, country, getWeather }) => { // Deconstruction method for properties from the object    
+const WeatherCard = ({ temp, condition, city, getWeather }) => { // Deconstruction method for properties from the object    
     // Set high and low temps color
     let highColor = 0;
     let lowColor = 0;
@@ -44,7 +44,7 @@ const WeatherCard = ({ temp, condition, city, country, getWeather }) => { // Dec
     return (
         <motion.div initial={{ scale: 0 }} animate={{scale: 1}}>
             <Card>
-                <Location getWeather={getWeather} city={city} country={country} />
+                <Location getWeather={getWeather} city={city} />
                 <Icon condition={condition} />
                 <Condition temp={temp} condition={condition} />
             </Card>

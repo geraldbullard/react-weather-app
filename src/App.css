@@ -3,7 +3,7 @@
 #root .App {
     margin: 0 auto;
     text-align: center;
-    width: 85%;
+    width: 100vw;
 }
 #root .App div {
     text-align: center;
@@ -12,14 +12,23 @@
 #root .loadingWrapper {
     color: black;
 }
-#root .city-input-controls {
-    margin-top: 8px;
+#root .errorWrapper {
+    margin: 0 auto;
+    width: 200px;
+    height: 240px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #999;
+    border-radius: 15px;
+    background-color: #ddd;
 }
-#root .city-input {
-    padding: 2px 4px;
+#root .errorWrapper p {
+    margin: 10px auto;
+    padding: 4px;
 }
-#root .city-input-controls button {
-    padding: 2px 4px;
+#root .errorWrapper p button {
+    padding: 4px;
+    cursor: pointer;
 }
 #root .loadingWrapper {
     margin: 0 auto;

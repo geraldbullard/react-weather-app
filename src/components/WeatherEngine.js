@@ -21,7 +21,6 @@ const WeatherEngine = ({ location }) => {
     const [weather, setWeather] = useState({
         temp: null,
         city: null,
-        country: null,
         condition: null
     });
 
@@ -38,7 +37,6 @@ const WeatherEngine = ({ location }) => {
                 temp: resJSON.main.temp,
                 city: resJSON.name,
                 condition: resJSON.weather[0].main,
-                country: resJSON.country
             });
         } catch (error) {
             setError(true);
@@ -51,34 +49,35 @@ const WeatherEngine = ({ location }) => {
         getWeather(location);
     }, [location]);
 
+    if (error) {
+        return ( // Has error
+            <AppWrapper>
+                <div className="errorWrapper">
+                    <p>No match for that city!</p>
+                    <p><button onClick={() => setError(false)}>Try Again</button></p>
+                </div>
+            </AppWrapper>
+        );
+    }
+
+    if (loading) {
+        return ( // Loading Pulse Icon
+            <AppWrapper>
+                <div className="loadingWrapper">
+                    <PulseLoader size={15} color="purple" />
+                </div>
+            </AppWrapper>
+        );
+    }
+
     return (
         <AppWrapper>
-            {!loading && !error ? ( // Done loading and no errors
-            <>
-                <WeatherCard
-                    temp={cToF(weather.temp).toFixed(0)}
-                    condition={weather.condition}
-                    city={weather.city}
-                    country={weather.country}
-                    getWeather={getWeather}
-                />
-            </>
-            ) : loading && !error ? ( // Loading with no errors
-            <>
-                <div className="loadingWrapper">
-                            <PulseLoader size={15} color="purple" />
-                </div>
-            </>
-            ) : !loading && error ? ( // Done loading and has error
-            <>
-                <div className="errorWrapper">
-                    ERROR!<br /><br />
-                    <button onClick={() => setError(false)}>Reset</button>
-                </div>
-            </>
-            ) : ( // show nothing
-                null
-            )}
+            <WeatherCard
+                temp={cToF(weather.temp).toFixed(0)}
+                condition={weather.condition}
+                city={weather.city}
+                getWeather={getWeather}
+            />
         </AppWrapper>
     );
 }
