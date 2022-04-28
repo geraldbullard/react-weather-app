@@ -3,13 +3,17 @@ import styled from "@emotion/styled";
 
 const Location = ({ city, country, getWeather }) => {
     const [query, setQuery] = useState(""); 
-    const [inputMode, setInputMode] = useState(false);
+    const [inputCityMode, setInputCityMode] = useState(false);
+    const [inputCityFocusState, setInputCityFocusState] = useState(false);
     return (
         <Container>
-            {!inputMode &&
-            <City onClick={() => setInputMode(true)}>{city}</City>
+            {!inputCityMode &&
+                <City onClick={() => {
+                    setInputCityMode(true);
+                    setInputCityFocusState(true);
+                }}>{city}</City>
             }
-            {inputMode &&
+            {inputCityMode &&
             <div className="formWrapper">
                 <form onSubmit={e => {
                     e.preventDefault();
@@ -18,7 +22,9 @@ const Location = ({ city, country, getWeather }) => {
                     <p className="city-input">
                         <input
                             className="city-input"
+                            id="city_input"
                             required
+                            autoFocus={inputCityFocusState}
                             placeholder="City Name"
                             value={query}
                             onChange={e => setQuery(e.target.value)}
@@ -26,7 +32,7 @@ const Location = ({ city, country, getWeather }) => {
                     </p>
                     <p className="city-input-controls">
                         <button type="submit">Search</button>&nbsp;
-                        <button onClick={() => setInputMode(false)}>Cancel</button>
+                        <button onClick={() => setInputCityMode(false)}>Cancel</button>
                     </p>
                 </form>
             </div>
